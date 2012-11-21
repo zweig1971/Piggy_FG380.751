@@ -1,0 +1,31 @@
+                           Testprotokoll IFK Piggy
+                          ===========================
+
+Datum: 03.08.11    Uhrzeit: 15:31
+Prüfer: Mister L
+
+             Testergebnis
+Lfd.Nr       PT   1    2    3    4    Ergebnis
+----------------------------------------------
+1            OK   OK   OK   OK   OK   -OK-
+2            NA   OK   OK   OK    X   FEHLER
+
+
+
+
+
+
+
+
+
+
+-------------------------------
+          Unterschrift
+
+
+
+PT: IFK programmieren
+1 : Piggy ID Test
+2 : Visueller LED Test
+3 : LED Register Test
+4 : I/O Test

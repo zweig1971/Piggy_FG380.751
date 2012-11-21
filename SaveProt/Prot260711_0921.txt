@@ -1,0 +1,29 @@
+                          Testprotokoll IFK FG380.221
+                          ===========================
+
+Datum: 26.07.11    Uhrzeit: 09:21
+Prüfer: Mister L
+
+             Testergebnis
+Lfd.Nr       PT   1    2    3    Ergebnis
+-----------------------------------------
+1            NA   OK   OK    X   FEHLER
+
+
+
+
+
+
+
+
+
+
+-------------------------------
+          Unterschrift
+
+
+
+PT: Flash programmieren
+1 : Visueller LED Test
+2 : LED Register Test
+3 : I/O Test
