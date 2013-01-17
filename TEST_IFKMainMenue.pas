@@ -22,12 +22,15 @@ type
     AutomaticTest_Button: TButton;
     MainMenu1: TMainMenu;
     About_Menue: TMenuItem;
+    FlashFile1: TMenuItem;
+    OpenFlashFile: TOpenDialog;
     procedure EXIT_ButtonClick(Sender: TObject);
     procedure AutomaticTest_ButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure About_MenueClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure FlashFile1Click(Sender: TObject);
   private
     { Private-Deklarationen }
   public
@@ -58,34 +61,48 @@ var x:integer;
 
 
 begin
-     Form_Testaufbau.Close;
-     IsTestPast:=false;
+     //=====================================================
+     //prüfen ob das verszeichnis für die protokolldatei angelegt ist
+     // aktuelles verzeichnis ermitteln
+     //======================================================
+     //GetDir(0,Anwendungsverzeichnis);
+     if ((not FileExists(Anwendungsverzeichnis+DateiTestFlashStand)) and (FlashFileName = DateiTestFlashStand)) then begin
+        Application.MessageBox('Wichtige Dateien (.rbf) konnten nicht gefunden werden, bitte überprüfen Sie die Installation'
+                              ,'Der Ausweg führt durch die Tür.Warum benutzt niemand die Tür ?',16);
 
-     TEST_DatenEingabeForm.ShowModal;
-     TEST_AutomaticTesTForm.ShowModal;
+         IFKMainMenue.FlashFile1.Click;
+     end else begin
 
-     if(IsTestPast = true) then begin
-       //Leerzeichen einfuegen
-       for x:=1 to 10 do begin
-          TEST_ProtokollShowForm.ProtokollListBox.Items.Add('');
-       end;
 
-       //Unterschrift
-       TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeUnterschrift1);
-       TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeUnterschrift2);
+         Form_Testaufbau.Close;
+         IsTestPast:=false;
 
-       //Leerzeichen einfuegen
-       for x:=1 to 3 do begin
-          TEST_ProtokollShowForm.ProtokollListBox.Items.Add('');
-       end;
+         TEST_DatenEingabeForm.ShowModal;
+         TEST_AutomaticTesTForm.ShowModal;
 
-       //Legende
-       TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeLegende1);
-       TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeLegende2);
-       TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeLegende3);
-       TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeLegende4);
-       TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeLegende5);
-       TEST_ProtokollShowForm.ShowModal;
+         if(IsTestPast = true) then begin
+           //Leerzeichen einfuegen
+           for x:=1 to 10 do begin
+               TEST_ProtokollShowForm.ProtokollListBox.Items.Add('');
+           end;
+
+           //Unterschrift
+           TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeUnterschrift1);
+           TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeUnterschrift2);
+
+           //Leerzeichen einfuegen
+           for x:=1 to 3 do begin
+               TEST_ProtokollShowForm.ProtokollListBox.Items.Add('');
+           end;
+
+           //Legende
+           TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeLegende1);
+           TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeLegende2);
+           TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeLegende3);
+           TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeLegende4);
+           TEST_ProtokollShowForm.ProtokollListBox.Items.Add(ProtListeLegende5);
+           TEST_ProtokollShowForm.ShowModal;
+         end;
      end;
 end;
 
@@ -104,6 +121,9 @@ var status:_DWORD;
 begin
      ErrorFound:=false;
      abbruch:=false;
+
+     // pfad zum flash file festlegen
+     FlashFileName:= DateiTestFlashStand;
 
      //IFKOnline liste erstellen
      IFKOnline   := TStringList.Create;
@@ -138,19 +158,6 @@ begin
        IFKAdress := 0;
     end;
 
-
-     //=====================================================
-     //prüfen ob das verszeichnis für die protokolldatei angelegt ist
-     // aktuelles verzeichnis ermitteln
-     //======================================================
-     //GetDir(0,Anwendungsverzeichnis);
-     if (not FileExists(Anwendungsverzeichnis+DateiTestFlash)) then
-        begin
-             Application.MessageBox('Wichtige Dateien (.rbf) konnten nicht gefunden werden, bitte überprüfen Sie die Installation'
-                                   ,'Der Ausweg führt durch die Tür.Warum benutzt niemand die Tür ?',16);
-             ErrorFound :=  true;
-        end;
-
      if(ErrorFound =  true) then begin
        IFKMainMenue.Close;
        Application.Terminate;
@@ -171,6 +178,21 @@ end;
 procedure TIFKMainMenue.FormShow(Sender: TObject);
 begin
      Form_Testaufbau.Show;
+end;
+
+procedure TIFKMainMenue.FlashFile1Click(Sender: TObject);
+
+begin
+     OpenFlashFile.Filter:= 'Flash File(*.rbf)|*.rbf';
+     OpenFlashFile.DefaultExt:='rbf';
+     OpenFlashFile.InitialDir:= extractfilepath(paramstr(0));
+
+     if OpenFlashFile.Execute then begin
+        FlashFileName := OPenFlashFile.FileName;
+     end;
+
+     if(FlashFileName = '') then FlashFileName:= DateiTestFlashStand;
+
 end;
 
 end.

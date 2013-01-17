@@ -1,6 +1,6 @@
 object Form_Testaufbau: TForm_Testaufbau
-  Left = 20
-  Top = 22
+  Left = 117
+  Top = 100
   Width = 721
   Height = 544
   AutoSize = True

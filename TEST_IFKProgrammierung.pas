@@ -418,7 +418,7 @@ begin
      ErrorFound:= false;
 
      //Flasch für den test oder finale version laden
-     status:= LoadFlashFile(DateiTestFlash);
+     status:= LoadFlashFile(FlashFileName);
 
      //wegen der entprellung der interfacekartenadresse erst mal einen kaffee
      PCI_TimerWait(Cardauswahl, 100, 1, ErrStatus);

@@ -94,7 +94,7 @@ var dateiname:string;
 
 begin
   dateiname:='';
-  SaveDialog1.Filter:='Textdateien(*.TXT|*.TXT';
+  SaveDialog1.Filter:='Textdateien(*.TXT)|*.TXT';
   SaveDialog1.DefaultExt:='TXT';
   if SaveDialog1.Execute then begin
         dateiname := SaveDialog1.FileName;

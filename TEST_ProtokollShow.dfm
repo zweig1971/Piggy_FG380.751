@@ -1,6 +1,6 @@
 object TEST_ProtokollShowForm: TTEST_ProtokollShowForm
-  Left = 312
-  Top = 29
+  Left = 301
+  Top = 104
   Width = 769
   Height = 819
   AutoSize = True

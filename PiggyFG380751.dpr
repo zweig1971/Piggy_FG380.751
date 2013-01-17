@@ -25,6 +25,9 @@ begin
   Application.Initialize;
   Application.Title := 'TEST_PiggyFG380.751';
   Application.CreateForm(TIFKMainMenue, IFKMainMenue);
+
+
+
   Application.CreateForm(TSRNummerEingabe, SRNummerEingabe);
   Application.CreateForm(TTest_AutomaticTesTForm, Test_AutomaticTesTForm);
   Application.CreateForm(TBitteWartenForm, BitteWartenForm);

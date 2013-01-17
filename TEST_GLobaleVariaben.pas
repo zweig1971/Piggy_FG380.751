@@ -105,7 +105,10 @@ const
      //--------------------------------
 
     AuswahlKickerKarte = false;
-    DateiTestFlash = '\FlashFiles\IFA8_V1P4_Test.rbf';
+
+    //DateiTestFlashStand = '\FlashFiles\IFA8_V1P4_Test.rbf';
+
+    DateiTestFlashStand = '\FlashFiles\*.rbf';
     DateiSaveProtVerz = '\SaveProt';
     BilderVerz = '\Bilder';
     DateiSaveProtName = 'Prot';
@@ -146,6 +149,7 @@ var
    TestUhrzeit:string;
    TestLfdNr:string;
    Bearbeiter:string;
+   FlashFileName:string;
    TestResultArray:TTestResultArray;
    LfdNrDontShow:boolean;
 

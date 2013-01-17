@@ -1877,7 +1877,7 @@ object KickerTest_Info: TKickerTest_Info
     Top = 50
     Width = 72
     Height = 16
-    Caption = 'Version 0.5'
+    Caption = 'Version 0.6'
   end
   object Label5: TLabel
     Left = 0

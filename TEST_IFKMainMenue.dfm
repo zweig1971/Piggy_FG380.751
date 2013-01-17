@@ -59,11 +59,19 @@ object IFKMainMenue: TIFKMainMenue
     OnClick = EXIT_ButtonClick
   end
   object MainMenu1: TMainMenu
-    Left = 40
-    Top = 8
+    Left = 256
+    Top = 112
+    object FlashFile1: TMenuItem
+      Caption = 'FlashFile'
+      OnClick = FlashFile1Click
+    end
     object About_Menue: TMenuItem
       Caption = 'About'
       OnClick = About_MenueClick
     end
+  end
+  object OpenFlashFile: TOpenDialog
+    Left = 16
+    Top = 112
   end
 end
